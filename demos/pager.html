@@ -74,14 +74,30 @@
   </div>
 
   <div>
-    <p>这个分页器会改变</p>
+    <p>这个分页器会改变 url</p>
+    <div class="pager"></div>
   </div>
 
   <script src="../lib/dom/index.js"></script>
   <script src="../lib/bom/index.js"></script>
   <script src="../lib/pager/index.js"></script>
   <script>
-    
+    let pagers = document.querySelectorAll('.pager')
+    new Pager({
+      element: pagers[0],
+      currentPage: 1,
+      totalPage: 100
+    })
+    pagers[0].addEventListener('pageChange', (e) => {
+      console.log(e.detail.page)
+    })
+
+    new Pager({
+      element: pagers[1],
+      currentPage: parseInt(bom.queryString.get('page'), 10),
+      totalPage: 100,
+      pageQuery: 'page'
+    })
   </script>
 </body>
 </html>
